@@ -6,6 +6,8 @@ const {app, BrowserWindow} = electron
 const path = require('path')
 const url = require('url')
 
+const jQuery = $ = require("jquery");
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -15,11 +17,12 @@ function createWindow () {
     const {width, height} = electron.screen.getPrimaryDisplay().bounds
 
     win = new BrowserWindow({
-        width: width,
-        height: height,
+        width: 1280,
+        height: 720,
         title: "boidpixel",
         frame: false,
         resizable: false,
+        icon: __dirname + '/Icon.ico'
     })
 
     // Open the DevTools.
@@ -42,7 +45,7 @@ function createWindow () {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
-        win = null
+        //win = null
     })
 }
 

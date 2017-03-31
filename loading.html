@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
+    const jQuery = $ = require("jquery");
     const {shell} = require('electron');
 </script>
 <head>
@@ -15,9 +16,11 @@
         }
         .darkaqua_logo{
             position: absolute;
-            height: 100px;
+            height: 128px;
             bottom: 25px;
             right: 25px;
+            cursor: pointer;
+            image-rendering: pixelated;
         }
         .copyright{
             position: absolute;
@@ -25,19 +28,18 @@
             left: 50px;
         }
         .logo{
-            width: 500px;
-            height: 89px;
+            width: 424px;
             position: absolute;
             top: calc( 50% - (89px/2) - 100px );
-            left: calc( 50% - (500px/2) );
-            cursor: pointer;
+            left: calc( 50% - (424px/2) );
+            image-rendering: pixelated;
         }
         .message{
-            width: 500px;
+            width: 424px;
             height: 30px;
             position: absolute;
-            top: calc( 50% - (30px/2));
-            left: calc( 50% - (500px/2) );
+            top: calc( 50% - (30px/2) - 50px);
+            left: calc( 50% - (424px/2) );
             text-align: center;
         }
 
@@ -54,21 +56,68 @@
 </head>
 <!-- style="background: url(http://darkaqua.net/assets/voidpixel_stone.png)" -->
 <body>
-    <a class="message">Loading...</a>
+    <a id="loading" class="message">Loading...</a>
     <img class="logo" src="http://darkaqua.net/assets/voidpixel_stone.png?d=sda"/>
     <div class="copyright">voidpixel © 2017</div>
     <img onclick="shell.openExternal('http://darkaqua.net')" class="darkaqua_logo" src="http://darkaqua.net/assets/darkaqua.png" />
 </body>
 </html>
 <script>
+
+    class LoadingText{
+        constructor(id, intervalTime, hasLoadingText = `Loading`){
+            this.id = id;
+            this.intervalTime = intervalTime;
+            this.hasLoadingText = hasLoadingText;
+
+            this.dotsCount = 1;
+        }
+
+        loadingFunction(){
+            let dots = ``;
+            for (let d = 0; d < this.dotsCount; d++){
+                dots += `.`;
+            }
+            if(this.dotsCount > 2){
+                this.dotsCount = 0;
+            }
+            $(this.id).html(`${this.hasLoadingText}${dots}`);
+            this.dotsCount++;
+        }
+
+        start(){
+            this.intervalFunction = setInterval(() => {this.loadingFunction()}, this.intervalTime);
+        }
+
+        stop(){
+            clearInterval(this.intervalFunction);
+        }
+
+        clear(){
+            $(this.id).html(``);
+        }
+
+        setText(text){
+            this.stop()
+            $(this.id).html(`${text}`);
+        }
+    }
+
+    let loading = new LoadingText("#loading", 500);
+    loading.start();
+
     setTimeout(() => {
-        openRick()
+        loading.setText(`Never Gonna Give Yo%*¨¨-:·^*^"ÑÑÑ+/*`);
+        shell.openExternal('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+        /*setTimeout(() => {
+            openRick()
+        }, 10000);*/
     }, 10 * 1000);
 
-//    const openRick = () => {
-//        setTimeout(() => {
-//            shell.openExternal('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-//            openRick()
-//        }, 200);
-//    }
+    const openRick = () => {
+        setTimeout(() => {
+            shell.openExternal('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+            openRick()
+        }, 100);
+    }
 </script>
