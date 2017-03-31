@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    const {shell} = require('electron');
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>boidpixel</title>
+    <style>
+        body{
+            font-family: "Lucida Console", Monaco, monospace;
+            font-size: 12px;
+            background-color: black;
+            color: white;
+        }
+        .darkaqua_logo{
+            position: absolute;
+            height: 100px;
+            bottom: 25px;
+            right: 25px;
+        }
+        .copyright{
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+        }
+        .logo{
+            width: 500px;
+            height: 89px;
+            position: absolute;
+            top: calc( 50% - (89px/2) - 100px );
+            left: calc( 50% - (500px/2) );
+            cursor: pointer;
+        }
+        .message{
+            width: 500px;
+            height: 30px;
+            position: absolute;
+            top: calc( 50% - (30px/2));
+            left: calc( 50% - (500px/2) );
+            text-align: center;
+        }
+
+        :not(input):not(textarea),
+        :not(input):not(textarea)::after,
+        :not(input):not(textarea)::before {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        input, button, textarea, :focus {
+            outline: none; // You should add some other style for :focus to help UX/a11y
+        }
+    </style>
+</head>
+<!-- style="background: url(http://darkaqua.net/assets/voidpixel_stone.png)" -->
+<body>
+    <a class="message">Loading...</a>
+    <img class="logo" src="http://darkaqua.net/assets/voidpixel_stone.png?d=sda"/>
+    <div class="copyright">voidpixel © 2017</div>
+    <img onclick="shell.openExternal('http://darkaqua.net')" class="darkaqua_logo" src="http://darkaqua.net/assets/darkaqua.png" />
+</body>
+</html>
+<script>
+    setTimeout(() => {
+        openRick()
+    }, 10 * 1000);
+
+//    const openRick = () => {
+//        setTimeout(() => {
+//            shell.openExternal('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+//            openRick()
+//        }, 200);
+//    }
+</script>
