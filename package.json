@@ -2,14 +2,23 @@
   "name": "boidpixel",
   "version": "1.0.0",
   "description": "",
+  "icon": "D:/i-workspace/node/boidpixel/Icon.ico",
   "main": "index.js",
   "scripts": {
-    "test": "electron ."
+    "test": "electron .",
+    "pack": "build --dir",
+    "dist": "build"
   },
   "author": "darkaqua",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.6.2",
     "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "electron": "^1.6.2",
+    "electron-builder": "^16.6.0"
+  },
+  "build": {
+    "icon": "D:/i-workspace/node/boidpixel/Icon.ico"
   }
 }
